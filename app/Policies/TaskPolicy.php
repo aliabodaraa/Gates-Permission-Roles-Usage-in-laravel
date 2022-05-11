@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Models\Role;
 use App\Models\Task;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
@@ -18,7 +19,7 @@ class TaskPolicy
      */
     public function viewAny(User $user)
     {
-        return $user->id==1;
+        return $user->id==Role::IS_USER;
     }
 
     /**
@@ -41,7 +42,7 @@ class TaskPolicy
      */
     public function create(User $user)
     {
-        return $user->id == 2;
+        return $user->id == Role::IS_ADMIN;
     }
 
     /**
