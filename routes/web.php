@@ -51,6 +51,12 @@ Route::group(['middleware'=>'auth'],function(){
         Gate::authorize('tasks_delete');//if will allow for the user the implement the condition for current user that have is_admin=1 -- with Exception 403-THIS ACTION IS UNAUTHORIZED.
         echo "<h1>you are authorized access to here<h1>";
     });
+    Route::get('/tryPolicy',function(){//protection via Policis(you should pass  Model as the second parameter)
+        //Gate::allows('tasks_delete',\App\Models\Task::class);//all the user can access
+        Gate::authorize('create',\App\Models\Task::class);//if will allow for the user the implement the condition for current user that have is_admin=2(fo to the create policy(TaskPolicy)) -- with Exception 403-THIS ACTION IS UNAUTHORIZED.
+        echo "<h1>you are authorized access to here<h1>";
+    });
+    //Route::view('/edit','admin')
 });
 
 
